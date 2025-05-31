@@ -4,8 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hope Logo</title>
+
+<!-- Import Poppins font from Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap" rel="stylesheet" />
+
 <style>
-  /* Reset */
   * {
     margin: 0;
     padding: 0;
@@ -19,19 +22,30 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   #logo {
     font-size: 8rem;
     font-weight: 900;
-    color: #58a6ff; /* GitHub blue */
+    background: linear-gradient(135deg, #58a6ff, #1f6feb, #79c0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(120, 180, 255, 0.6);
     user-select: none;
     cursor: default;
-    transition: color 0.3s ease;
-    text-shadow: 0 0 10px #58a6ff88;
     will-change: transform;
     display: inline-block;
+    transition: text-shadow 0.3s ease, background-position 0.5s ease;
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    animation: gradientMove 5s ease infinite;
+  }
+
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 </style>
 </head>
@@ -42,34 +56,26 @@
 <script>
   const logo = document.getElementById('logo');
 
-  // Make the logo follow the mouse with some smooth movement
   document.addEventListener('mousemove', e => {
-    const x = e.clientX / window.innerWidth - 0.5; // -0.5 to 0.5
+    const x = e.clientX / window.innerWidth - 0.5;
     const y = e.clientY / window.innerHeight - 0.5;
 
-    // Set rotation based on mouse position
-    const rotateX = y * 15; // max 15 degrees tilt
+    const rotateX = y * 15;
     const rotateY = x * 30;
-
-    // Slight scale effect for some pop
     const scale = 1 + Math.abs(x) * 0.1;
 
-    logo.style.transform = `perspective(600px) rotateX(${ -rotateX }deg) rotateY(${ rotateY }deg) scale(${ scale })`;
+    logo.style.transform = `perspective(600px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
   });
 
-  // Optional: subtle color change on hover
   logo.addEventListener('mouseenter', () => {
-    logo.style.color = '#79c0ff';
-    logo.style.textShadow = '0 0 20px #79c0ffcc';
+    logo.style.textShadow = '0 0 20px rgba(120, 180, 255, 0.9)';
   });
 
   logo.addEventListener('mouseleave', () => {
-    logo.style.color = '#58a6ff';
-    logo.style.textShadow = '0 0 10px #58a6ff88';
+    logo.style.textShadow = '0 0 10px rgba(120, 180, 255, 0.6)';
     logo.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale(1)';
   });
 </script>
 
 </body>
 </html>
-
