@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hope Logo</title>
+<title>HOPE Logo Fullscreen</title>
 
 <!-- Import Poppins font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet" />
 
 <style>
   html, body {
@@ -23,41 +23,27 @@
     user-select: none;
     cursor: default;
 
-    /* Make the text fill 95% width responsively */
     font-weight: 900;
-    font-size: 9vw; /* viewport width based sizing */
-    max-width: 95vw;
+    font-size: 20vw; /* Huge size, fills width */
     line-height: 1;
-
-    /* 3D layered text effect */
     color: #58a6ff;
-    position: relative;
-    text-transform: uppercase;
 
-    /* Base gradient */
+    /* Gradient fill */
     background: linear-gradient(135deg, #58a6ff, #1f6feb, #79c0ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    /* Text shadow layers for 3D depth */
-    text-shadow:
-      0 1px 0 #1f3a93,
-      0 2px 0 #1a3281,
-      0 3px 0 #172b72,
-      0 4px 0 #13235e,
-      0 5px 0 #0f1c4a,
-      0 6px 0 #0c1537,
-      0 7px 10px rgba(10, 72, 153, 0.7);
+    /* Remove text-shadow for flat style */
 
-    /* smooth animation */
+    text-transform: uppercase;
     will-change: transform;
-    transition: text-shadow 0.3s ease;
+    transition: color 0.3s ease;
   }
 </style>
 </head>
 <body>
 
-<div id="logo">Hope</div>
+<div id="logo">HOPE</div>
 
 <script>
   const logo = document.getElementById('logo');
@@ -66,7 +52,6 @@
     const x = e.clientX / window.innerWidth - 0.5;
     const y = e.clientY / window.innerHeight - 0.5;
 
-    // Stronger 3D rotation
     const rotateX = y * 25;
     const rotateY = x * 50;
     const scale = 1 + Math.abs(x) * 0.12;
@@ -75,25 +60,11 @@
   });
 
   logo.addEventListener('mouseenter', () => {
-    logo.style.textShadow =
-      `0 2px 4px #1f3a93,
-       0 4px 6px #1a3281,
-       0 6px 8px #172b72,
-       0 8px 12px #13235e,
-       0 10px 16px #0f1c4a,
-       0 12px 20px #0c1537,
-       0 14px 24px rgba(10, 72, 153, 0.9)`;
+    logo.style.color = '#79c0ff';
   });
 
   logo.addEventListener('mouseleave', () => {
-    logo.style.textShadow =
-      `0 1px 0 #1f3a93,
-       0 2px 0 #1a3281,
-       0 3px 0 #172b72,
-       0 4px 0 #13235e,
-       0 5px 0 #0f1c4a,
-       0 6px 0 #0c1537,
-       0 7px 10px rgba(10, 72, 153, 0.7)`;
+    logo.style.color = '#58a6ff';
     logo.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
   });
 </script>
