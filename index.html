@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hope Logo</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body, html {
+    height: 100%;
+    background: #0d1117; /* GitHub dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  #logo {
+    font-size: 8rem;
+    font-weight: 900;
+    color: #58a6ff; /* GitHub blue */
+    user-select: none;
+    cursor: default;
+    transition: color 0.3s ease;
+    text-shadow: 0 0 10px #58a6ff88;
+    will-change: transform;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+
+<div id="logo">Hope</div>
+
+<script>
+  const logo = document.getElementById('logo');
+
+  // Make the logo follow the mouse with some smooth movement
+  document.addEventListener('mousemove', e => {
+    const x = e.clientX / window.innerWidth - 0.5; // -0.5 to 0.5
+    const y = e.clientY / window.innerHeight - 0.5;
+
+    // Set rotation based on mouse position
+    const rotateX = y * 15; // max 15 degrees tilt
+    const rotateY = x * 30;
+
+    // Slight scale effect for some pop
+    const scale = 1 + Math.abs(x) * 0.1;
+
+    logo.style.transform = `perspective(600px) rotateX(${ -rotateX }deg) rotateY(${ rotateY }deg) scale(${ scale })`;
+  });
+
+  // Optional: subtle color change on hover
+  logo.addEventListener('mouseenter', () => {
+    logo.style.color = '#79c0ff';
+    logo.style.textShadow = '0 0 20px #79c0ffcc';
+  });
+
+  logo.addEventListener('mouseleave', () => {
+    logo.style.color = '#58a6ff';
+    logo.style.textShadow = '0 0 10px #58a6ff88';
+    logo.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale(1)';
+  });
+</script>
+
+</body>
+</html>
 
