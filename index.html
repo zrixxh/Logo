@@ -5,47 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hope Logo</title>
 
-<!-- Import Poppins font from Google Fonts -->
+<!-- Import Poppins font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap" rel="stylesheet" />
 
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body, html {
-    height: 100%;
-    background: #0d1117; /* GitHub dark background */
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: #0d1117;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     font-family: 'Poppins', sans-serif;
+    overflow: hidden;
   }
 
   #logo {
-    font-size: 8rem;
+    user-select: none;
+    cursor: default;
+
+    /* Make the text fill 95% width responsively */
     font-weight: 900;
+    font-size: 9vw; /* viewport width based sizing */
+    max-width: 95vw;
+    line-height: 1;
+
+    /* 3D layered text effect */
+    color: #58a6ff;
+    position: relative;
+    text-transform: uppercase;
+
+    /* Base gradient */
     background: linear-gradient(135deg, #58a6ff, #1f6feb, #79c0ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(120, 180, 255, 0.6);
-    user-select: none;
-    cursor: default;
-    will-change: transform;
-    display: inline-block;
-    transition: text-shadow 0.3s ease, background-position 0.5s ease;
-    background-size: 200% 200%;
-    background-position: 0% 50%;
-    animation: gradientMove 5s ease infinite;
-  }
 
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    /* Text shadow layers for 3D depth */
+    text-shadow:
+      0 1px 0 #1f3a93,
+      0 2px 0 #1a3281,
+      0 3px 0 #172b72,
+      0 4px 0 #13235e,
+      0 5px 0 #0f1c4a,
+      0 6px 0 #0c1537,
+      0 7px 10px rgba(10, 72, 153, 0.7);
+
+    /* smooth animation */
+    will-change: transform;
+    transition: text-shadow 0.3s ease;
   }
 </style>
 </head>
@@ -60,20 +66,35 @@
     const x = e.clientX / window.innerWidth - 0.5;
     const y = e.clientY / window.innerHeight - 0.5;
 
-    const rotateX = y * 15;
-    const rotateY = x * 30;
-    const scale = 1 + Math.abs(x) * 0.1;
+    // Stronger 3D rotation
+    const rotateX = y * 25;
+    const rotateY = x * 50;
+    const scale = 1 + Math.abs(x) * 0.12;
 
-    logo.style.transform = `perspective(600px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+    logo.style.transform = `perspective(800px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
   });
 
   logo.addEventListener('mouseenter', () => {
-    logo.style.textShadow = '0 0 20px rgba(120, 180, 255, 0.9)';
+    logo.style.textShadow =
+      `0 2px 4px #1f3a93,
+       0 4px 6px #1a3281,
+       0 6px 8px #172b72,
+       0 8px 12px #13235e,
+       0 10px 16px #0f1c4a,
+       0 12px 20px #0c1537,
+       0 14px 24px rgba(10, 72, 153, 0.9)`;
   });
 
   logo.addEventListener('mouseleave', () => {
-    logo.style.textShadow = '0 0 10px rgba(120, 180, 255, 0.6)';
-    logo.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale(1)';
+    logo.style.textShadow =
+      `0 1px 0 #1f3a93,
+       0 2px 0 #1a3281,
+       0 3px 0 #172b72,
+       0 4px 0 #13235e,
+       0 5px 0 #0f1c4a,
+       0 6px 0 #0c1537,
+       0 7px 10px rgba(10, 72, 153, 0.7)`;
+    logo.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
   });
 </script>
 
